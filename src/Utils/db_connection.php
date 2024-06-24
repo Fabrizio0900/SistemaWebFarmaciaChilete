@@ -1,15 +1,19 @@
 <?php
-
 $server = "localhost";
-$port = "3306";
 $username = "root";
-$password = "5o39OVw89aqX";
-$database = "ChileteFarmacia";
+$password = "";
+$database = "chiletefarmacia";
+$port = 3306;
 
-$conn = new mysqli($server, $username, $password, $database, $port);
+try {
+    $conn = new mysqli($server, $username, $password, $database, $port);
 
-if($conn->connect_error){
-    die("Error de conexion: ". $conn->connect_error);
+    if ($conn->connect_error) {
+        die("Error de conexión: " . $conn->connect_error);
+    }
+
+    return $conn;
+} catch (mysqli_sql_exception $e) {
+    throw new Exception('Error al conectar a la base de datos: ' . $e->getMessage());
 }
-
-return $conn;
+?>
