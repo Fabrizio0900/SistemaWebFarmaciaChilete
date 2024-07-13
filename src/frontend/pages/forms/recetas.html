@@ -1,17 +1,17 @@
 <!DOCTYPE html>
+</html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../../css/StyleNav.css" rel="stylesheet">
-    <link href="../../css/StyleForms.css" rel="stylesheet">
     <link href="https://necolas.github.io/normalize.css/8.0.1/normalize.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title>Productos | ArtTech Solutions</title>
-</head>
-<body onload="hideSpinner(); loadProductData();">
+    <title>Receta Médica | Chilete Farmacia</title>
+</head> 
+<body onload="hideSpinner(); loadRecetaData();">
     <div id="spinner-container" class="spinner-container">
         <div class="spinner-border text-warning" role="status">
             <span class="visually-hidden">Loading...</span>
@@ -24,32 +24,34 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDesktop" aria-controls="navbarDesktop" aria-expanded="false" aria-label="Navegacion">
                     <span class="navbar-toggler-icon"></span>
                 </button>
- 
+                
                 <div class="collapse navbar-collapse" id="navbarDesktop">
                     <a class="navbar-brand" href="../../menumain.html">
                         <img src="../../images/LogoMain.webp" alt="LogoMain" width="64" height="64">
-                        ArtTech Solutions
+                        Chilete Farmacia
                     </a>
+                    
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                               Administrativo
                             </a>
                             <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#">Usuario</a></li>
+                              <li><a class="dropdown-item" href="../usuario_view.html">Usuario</a></li>
                             </ul>
                         </li>
-                    </ul>                    
+                    </ul>   
 
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                              Almacen
+                              Almacén
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="../productos_view.html">Registro de Productos</a></li>
-                                <li><a class="dropdown-item" href="../inventario_inicial_view.html">Inventario Inicial</a></li>
+                                <li><a class="dropdown-item" href="#">Inventario Inicial</a></li>
                                 <li><a class="dropdown-item" href="#">Movimientos de Almacén</a></li>
+                                <li><a class="dropdown-item" href="#">Orden de Compra</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -60,18 +62,21 @@
                               Comercial
                             </a>
                             <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#">Locales</a></li>
+                                <li><a class="dropdown-item" href="../locales_view.html">Locales</a></li>
+                                <li><a class="dropdown-item" href="../clientes_view.html">Clientes</a></li>
+                                <li><a class="dropdown-item" href="../proveedores_view.html">Proveedores</a></li>
                             </ul>
                         </li>
                     </ul>
-
+                    
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                              Utilidades
+                              Punto de Venta
                             </a>
                             <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#">Tablas</a></li>
+                                <li><a class="dropdown-item" href="../facturar_view.html">Facturar Venta</a></li>
+                                <li><a class="dropdown-item" href="../recetas_view.html">Receta Médica</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -82,90 +87,66 @@
                               Planillas
                             </a>
                             <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#">Personal</a></li>
+                                <li><a class="dropdown-item" href="../personal_view.html">Personal</a></li>
+                                <li><a class="dropdown-item" href="../medicos_view.html">Médicos</a></li>
                             </ul>
+                        </li>
+                    </ul>
+
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              Utilidades
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="../tablavarios_view.html">Tablas</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <button type="button" class="btn btn-danger" style="color: white;" onclick="cerrarSesion();">Cerrar Sesión</button>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+    
+    <div class="container"> 
+        <h2 class="text-center mb-4 mt-4">Receta</h2>
+        <form id="recetasForm" action="../../../backend/pages/form/recetas/recetas_new.php" method="post">
+            <input type="hidden" id="recetaid " name="recetaid ">
 
-    <div class="container">
-        <h2>Sistema de Productos</h2>
-        <form id="productForm" action="../../../backend/pages/form/productos/productos_new.php" method="post">
-            <input type="hidden" id="productoid" name="productoid">
             <div class="mb-3">
-                <label for="nameProduct" class="form-label">Nombre del Producto</label>
-                <input type="text" class="form-control" id="nameProduct" name="nameProduct" required>
-            </div>
-            <div class="mb-3">
-                <label for="descripcionProduct" class="form-label">Descripción del Producto</label>
-                <input type="text" class="form-control" id="descripcionProduct" name="descripcionProduct" required>
-            </div>
-            <div class="mb-3">
-                <label for="codeAlmacen" class="form-label">Código de Almacén</label>
-                <input type="text" class="form-control" id="codeAlmacen" name="codeAlmacen">
-            </div>
-            <div class="mb-3">
-                <label for="codeBarras" class="form-label">Código de Barras</label>
-                <input type="text" class="form-control" id="codeBarras" name="codeBarras">
+                <label for="codigoReceta" class="form-label">Código Receta</label>
+                <input type="text" class="form-control" id="codigoReceta" name="codigoReceta" required>
             </div>
 
             <div class="mb-3">
-                <label for="categoryProduct" class="form-label">Categoria de Producto</label>
-                <select class="form-select" id="categoryProduct" name="categoryProduct" required>
-                    <!--AQUI ENTRAN LAS OPCIONES-->
-                </select>
-            </div>
-
-            <div class="mb-3">
-                <label for="unidadProducto" class="form-label">Unidad de Producto</label>
-                <select class="form-select" id="unidadProducto" name="unidadProducto" required>
-                    <!--AQUI ENTRAN LAS OPCIONES-->
-                </select>
-            </div>
-
-            <div class="mb-3">
-                <label for="marcaProducto" class="form-label">Marca del Producto</label>
-                <select class="form-select" id="marcaProducto" name="marcaProducto">
-                    <!--AQUI ENTRAN LAS OPCIONES-->
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="modeloProducto" class="form-label">Modelo del Producto</label>
-                <select class="form-select" id="modeloProducto" name="modeloProducto">
-                    <!--AQUI ENTRAN LAS OPCIONES-->
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="statusProducto" class="form-label">Estado del Producto</label>
-                <select class="form-select" id="statusProducto" name="statusProducto">
-                    <option value="0">Activo</option>
-                    <option value="1">Inactivo</option>
-                </select>
+                <label for="fotoReceta" class="form-label">Foto Receta</label>
+                <input type="file" accept="image/png, image/jpeg, image/jpg, image/webp" class="form-control" id="fotoReceta" name="fotoReceta" required>
             </div>
 
             <div class="d-flex justify-content-between">
-                <button type="button" class="btn btn-secondary" onclick="window.location.href='../productos_view.html'">Volver</button>
+                <button type="button" class="btn btn-secondary" onclick="window.location.href='../recetas_view.html'">Volver</button>
                 <div>
-                    <button type="submit" class="btn btn-primary" id="registerButton">Registrar Producto</button>
-                    <button type="button" class="btn btn-success" id="updateButton" style="display:none;" onclick="updateProduct()">Actualizar Producto</button>
-                    <button type="button" class="btn btn-danger" id="deleteButton" style="display:none;" onclick="deleteProduct()">Eliminar Producto</button>
+                    <button type="submit" class="btn btn-primary" id="registerButton">Registrar Usuario</button>
+                    <button type="button" class="btn btn-success" id="updateButton" style="display:none;" onclick="updateReceta()">Actualizar Receta</button>
+                    <button type="button" class="btn btn-danger" id="deleteButton" style="display:none;" onclick="deleteReceta()">Eliminar Receta</button>
                 </div>
             </div>
         </form>
     </div>
-
-
+    
     <script>
-
-        document.getElementById('productForm').addEventListener('submit', function(event) {
+        document.getElementById('recetasForm').addEventListener('submit', function(event) {
             event.preventDefault();
 
             const formData = new FormData(this);
 
-            fetch('../../../backend/pages/form/productos/productos_new.php', {
+            fetch('../../../backend/pages/form/recetas/recetas_new.php', {
                 method: 'POST',
                 body: formData
             })
@@ -174,15 +155,15 @@
                 if (result.success) {
                     Swal.fire(
                         '¡Registrado!',
-                        'El producto ha sido registrado.',
+                        'La receta ha sido registrada.',
                         'success'
                     ).then(() => {
-                        window.location.href = '../productos_view.html';
+                        window.location.href = '../recetas_view.html';
                     });
                 } else {
                     Swal.fire(
                         'Error',
-                        'Hubo un problema al registrar el producto.',
+                        'Hubo un problema al registrar la receta.',
                         'error'
                     );
                 }
@@ -190,30 +171,23 @@
             .catch(error => {
                 Swal.fire(
                     'Error',
-                    'Hubo un problema al registrar el producto.',
+                    'Hubo un problema al registrar la receta.',
                     'error'
                 );
             });
         });
 
-        function loadProductData() {
+        function loadRecetaData() {
             const params = new URLSearchParams(window.location.search);
-            const productId = params.get('productoid');
+            const recetaid = params.get('recetaid');
             
-            if (productId) {
-                fetch(`../../../backend/pages/form/productos/productos_get.php?productoid=${productId}`)
+            if (recetaid) {
+                fetch(`../../../backend/pages/form/recetas/recetas_get.php?recetaid=${recetaid}`)
                     .then(response => response.json())
                     .then(data => {
-                        document.getElementById('productoid').value = data.productoid;
-                        document.getElementById('nameProduct').value = data.nameProduct;
-                        document.getElementById('descripcionProduct').value = data.descripcionProduct;
-                        document.getElementById('codeAlmacen').value = data.codeAlmacen;
-                        document.getElementById('codeBarras').value = data.codeBarras;
-                        document.getElementById('categoryProduct').value = data.categoryProduct;
-                        document.getElementById('unidadProducto').value = data.unidadProducto;
-                        document.getElementById('marcaProducto').value = data.marcaProducto;
-                        document.getElementById('modeloProducto').value = data.modeloProducto;
-                        document.getElementById('statusProducto').value = data.statusProducto;
+                        document.getElementById('recetaid').value = data.recetaid;
+                        document.getElementById('codigoReceta').value = data.codigoReceta;
+                        document.getElementById('fotoReceta').value = data.fotoReceta;
 
                         document.getElementById('registerButton').style.display = 'none';
                         document.getElementById('updateButton').style.display = 'inline-block';
@@ -221,16 +195,16 @@
 
                         hideSpinner();
                     })
-                    .catch(error => { console.error('Error al cargar los datos del producto:', error); hideSpinner(); });
+                    .catch(error => { console.error('Error al cargar los datos de la receta:', error); hideSpinner(); });
             } else {
                 hideSpinner();
             }
         }
 
-        function updateProduct() {
-            const formData = new FormData(document.getElementById('productForm'));
+        function updateReceta() {
+            const formData = new FormData(document.getElementById('recetasForm'));
 
-            fetch('../../../backend/pages/form/productos/productos_update.php', {
+            fetch('../../../backend/pages/form/recetas/recetas_update.php', {
                 method: 'POST',
                 body: formData
             })
@@ -239,15 +213,15 @@
                 if (result.success) {
                     Swal.fire(
                         '¡Actualizado!',
-                        'El producto ha sido actualizado.',
+                        'La receta ha sido actualizada.',
                         'success'
                     ).then(() => {
-                        window.location.href = '../productos_view.html';
+                        window.location.href = '../recetas_view.html';
                     });
                 } else {
                     Swal.fire(
                         'Error',
-                        'Hubo un problema al actualizar el producto.',
+                        'Hubo un problema al actualizar la receta: ' + result.error,
                         'error'
                     );
                 }
@@ -255,14 +229,14 @@
             .catch(error => {
                 Swal.fire(
                     'Error',
-                    'Hubo un problema al actualizar el producto.',
+                    'Hubo un problema al actualizar la receta.',
                     'error'
                 );
             });
         }
     
-        function deleteProduct() {
-            const productoid = document.getElementById('productoid').value;
+        function deleteReceta() {receta
+            const recetaid = document.getElementById('recetaid').value;
 
             Swal.fire({
                 title: '¿Estás seguro?',
@@ -274,26 +248,26 @@
                 confirmButtonText: 'Sí, eliminarlo'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    fetch(`../../../backend/pages/form/productos/productos_delete.php`, {
+                    fetch(`../../../backend/pages/form/recetas/recetas_delete.php`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded',
                         },
-                        body: `productoid=${productoid}`
+                        body: `recetaid=${recetaid}`
                     })
                     .then(response => {
                         if (response.ok) {
                             Swal.fire(
                                 '¡Eliminado!',
-                                'El producto ha sido eliminado.',
+                                'La receta ha sido eliminada.',
                                 'success'
                             ).then(() => {
-                                window.location.href = '../productos_view.html';
+                                window.location.href = '../recetas_view.html';
                             });
                         } else {
                             Swal.fire(
                                 'Error',
-                                'Hubo un problema al eliminar el producto.',
+                                'Hubo un problema al eliminar la receta.',
                                 'error'
                             );
                         }
@@ -301,7 +275,7 @@
                     .catch(error => {
                         Swal.fire(
                             'Error',
-                            'Hubo un problema al eliminar el producto.',
+                            'Hubo un problema al eliminar la receta.',
                             'error'
                         );
                     });
@@ -315,32 +289,26 @@
             }, 1000);
         }
 
-        fetch('../../../backend/pages/tabla_varios/listUnidad.php')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('unidadProducto').innerHTML = data;
-            });
-        fetch('../../../backend/pages/tabla_varios/listMarca.php')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('marcaProducto').innerHTML = data;
-            });
-        fetch('../../../backend/pages/tabla_varios/listModelo.php')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('modeloProducto').innerHTML = data;
-            });
-        fetch('../../../backend/pages/tabla_varios/listCategoria.php')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('categoryProduct').innerHTML = data;
-            });
-        function hideSpinner() {
-            setTimeout(function() {
-                document.getElementById('spinner-container').classList.add('hidden');
-            }, 1000);
+        function cerrarSesion() {
+            window.location.href = '../../../../login.html';
         }
 
+        fetch('../../../backend/pages/tabla_varios/listTipoDocumento.php')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('tipodoc').innerHTML = data;
+            });
+        fetch('../../../backend/pages/tabla_varios/listTipoAuxiliar.php')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('tipoAux').innerHTML = data;
+            });
+        fetch('../../../backend/pages/tabla_varios/listPaises.php')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('paisAux').innerHTML = data;
+            });
     </script>
+
 </body>
 </html>

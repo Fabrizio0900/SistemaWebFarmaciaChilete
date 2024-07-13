@@ -76,7 +76,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="../facturar_view.html">Facturar Venta</a></li>
-                                <li><a class="dropdown-item" href="#">Receta Médica</a></li>
+                                <li><a class="dropdown-item" href="../recetas_view.html">Receta Médica</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -342,6 +342,21 @@
         function cerrarSesion() {
             window.location.href = '../../../../login.html';
         }
+        fetch('../../../backend/pages/tabla_varios/listSexo.php')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('generoPersonal').innerHTML = data;
+            });
+        fetch('../../../backend/pages/tabla_varios/listEstadoCivil.php')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('estadoCivil').innerHTML = data;
+            });
+        fetch('../../../backend/pages/tabla_varios/listRolLaboral.php')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('rolePersonal').innerHTML = data;
+            });
     </script>
 
 </body>
